@@ -124,7 +124,7 @@ ok 27 - init creates a new deep directory
 ok 28 - init creates a new deep directory (umask vs. shared)
 ok 29 - init notices EEXIST (1)
 ok 30 - init notices EEXIST (2)
-ok 31 - init notices EPERM
+ok 31 # skip init notices EPERM (missing SANITY of POSIXPERM,SANITY)
 ok 32 - init creates a new bare directory with global --bare
 ok 33 - init prefers command line to GIT_DIR
 ok 34 - init with separate gitdir
@@ -132,7 +132,7 @@ ok 35 - explicit bare & --separate-git-dir incompatible
 ok 36 - implicit bare & --separate-git-dir incompatible
 ok 37 - bare & --separate-git-dir incompatible within worktree
 ok 38 - init in long base path
-ok 39 # skip init in long restricted base path (missing GETCWD_IGNORES_PERMS)
+ok 39 - init in long restricted base path
 ok 40 - re-init on .git file
 ok 41 - re-init to update git link
 ok 42 - re-init to move gitdir
@@ -239,14 +239,14 @@ ok 52 - user defined builtin_objectmode values are ignored
 1..52
 *** t0004-unwritable.sh ***
 ok 1 - setup
-ok 2 - write-tree should notice unwritable repository
-ok 3 - write-tree output on unwritable repository
-ok 4 - commit should notice unwritable repository
-ok 5 - commit output on unwritable repository
-ok 6 - update-index should notice unwritable repository
-ok 7 - update-index output on unwritable repository
-ok 8 - add should notice unwritable repository
-ok 9 - add output on unwritable repository
+ok 2 # skip write-tree should notice unwritable repository (missing SANITY of POSIXPERM,SANITY)
+ok 3 # skip write-tree output on unwritable repository (missing WRITE_TREE_OUT)
+ok 4 # skip commit should notice unwritable repository (missing SANITY of POSIXPERM,SANITY)
+ok 5 # skip commit output on unwritable repository (missing COMMIT_OUT)
+ok 6 # skip update-index should notice unwritable repository (missing SANITY of POSIXPERM,SANITY)
+ok 7 # skip update-index output on unwritable repository (missing UPDATE_INDEX_OUT)
+ok 8 # skip add should notice unwritable repository (missing SANITY of POSIXPERM,SANITY)
+ok 9 # skip add output on unwritable repository (missing ADD_OUT)
 # passed all 9 test(s)
 1..9
 *** t0005-signals.sh ***
@@ -363,7 +363,7 @@ ok 100 - human date 621660000
 *** t0007-git-var.sh ***
 ok 1 - get GIT_AUTHOR_IDENT
 ok 2 - get GIT_COMMITTER_IDENT
-ok 3 # skip requested identities are strict (missing !AUTOIDENT of !FAIL_PREREQS,!AUTOIDENT)
+ok 3 - requested identities are strict
 ok 4 - get GIT_DEFAULT_BRANCH without configuration
 ok 5 - get GIT_DEFAULT_BRANCH with configuration
 ok 6 - get GIT_EDITOR without configuration
@@ -1126,14 +1126,14 @@ ok 30 # skip delayed checkout with case-collision don't write to the wrong place
 ok 31 # skip delayed checkout with utf-8-collision don't write to the wrong place (missing UTF8_NFD_TO_NFC of SYMLINKS,UTF8_NFD_TO_NFC)
 ok 32 # skip delayed checkout with submodule collision don't write to the wrong place (missing CASE_INSENSITIVE_FS of SYMLINKS,CASE_INSENSITIVE_FS)
 ok 33 - setup for progress tests
-ok 34 - delayed checkout shows progress by default on tty (pathspec checkout)
+ok 34 # skip delayed checkout shows progress by default on tty (pathspec checkout) (missing TTY of PERL,TTY)
 ok 35 - delayed checkout ommits progress on non-tty (pathspec checkout)
-ok 36 - delayed checkout ommits progress with --quiet (pathspec checkout)
-ok 37 - delayed checkout honors --[no]-progress (pathspec checkout)
-ok 38 - delayed checkout shows progress by default on tty (branch checkout)
+ok 36 # skip delayed checkout ommits progress with --quiet (pathspec checkout) (missing TTY of PERL,TTY)
+ok 37 # skip delayed checkout honors --[no]-progress (pathspec checkout) (missing TTY of PERL,TTY)
+ok 38 # skip delayed checkout shows progress by default on tty (branch checkout) (missing TTY of PERL,TTY)
 ok 39 - delayed checkout ommits progress on non-tty (branch checkout)
-ok 40 - delayed checkout ommits progress with --quiet (branch checkout)
-ok 41 - delayed checkout honors --[no]-progress (branch checkout)
+ok 40 # skip delayed checkout ommits progress with --quiet (branch checkout) (missing TTY of PERL,TTY)
+ok 41 # skip delayed checkout honors --[no]-progress (branch checkout) (missing TTY of PERL,TTY)
 ok 42 - delayed checkout correctly reports the number of updated entries
 # passed all 42 test(s)
 1..42
@@ -4247,9 +4247,8 @@ ok 215 - match .mailmap
 ok 216 # skip is_valid_path() on Windows (missing MINGW)
 ok 217 # skip RUNTIME_PREFIX works (missing RUNTIME_PREFIX of !VALGRIND,RUNTIME_PREFIX,CAN_EXEC_IN_PWD)
 ok 218 # skip %(prefix)/ works (missing RUNTIME_PREFIX of !VALGRIND,RUNTIME_PREFIX,CAN_EXEC_IN_PWD)
-ok 219 - do_files_match()
-# passed all 219 test(s)
-1..219
+# passed all 218 test(s)
+1..218
 *** t0061-run-command.sh ***
 ok 1 # skip subprocess inherits only std handles (missing MINGW)
 ok 2 - start_command reports ENOENT (slash)
@@ -4260,7 +4259,7 @@ ok 6 - run_command can run a script without a #! line
 ok 7 - run_command does not try to execute a directory
 ok 8 - run_command passes over non-executable file
 ok 9 - run_command reports EACCES
-ok 10 - unreadable directory in PATH
+ok 10 # skip unreadable directory in PATH (missing SANITY of POSIXPERM,SANITY)
 ok 11 - run_command runs in parallel with more jobs available than tasks
 ok 12 - run_command runs ungrouped in parallel with more jobs available than tasks
 ok 13 - run_command runs in parallel with as many jobs as tasks
@@ -4322,8 +4321,8 @@ ok 2 - dir-iterator should iterate through all files
 ok 3 - dir-iterator should list files in the correct order
 ok 4 - begin should fail upon inexistent paths
 ok 5 - begin should fail upon non directory paths
-ok 6 - advance should not fail on errors by default
-ok 7 - advance should fail on errors, w/ pedantic flag
+ok 6 # skip advance should not fail on errors by default (missing SANITY of POSIXPERM,SANITY)
+ok 7 # skip advance should fail on errors, w/ pedantic flag (missing SANITY of POSIXPERM,SANITY)
 ok 8 - setup dirs with symlinks
 ok 9 - dir-iterator should not follow symlinks by default
 ok 10 - dir-iterator does not resolve top-level symlinks
@@ -4354,7 +4353,7 @@ ok 2 - oidtree each
 1..2
 *** t0070-fundamental.sh ***
 ok 1 - mktemp to nonexistent directory prints filename
-ok 2 - mktemp to unwritable directory prints filename
+ok 2 # skip mktemp to unwritable directory prints filename (missing SANITY of POSIXPERM,SANITY)
 ok 3 - git_mkstemps_mode does not fail if fd 0 is not open
 ok 4 - check for a bug in the regex routines
 ok 5 - incomplete sideband messages are reassembled
@@ -4738,7 +4737,7 @@ ok 52 - helper (store) not confused by long header
 ok 53 - if custom xdg file exists, home and xdg files not created
 ok 54 - get: use home file if both home and xdg files have matches
 ok 55 - get: use xdg file if home file has no matches
-ok 56 - get: use xdg file if home file is unreadable
+ok 56 # skip get: use xdg file if home file is unreadable (missing SANITY of POSIXPERM,SANITY)
 ok 57 - store: if both xdg and home files exist, only store in home file
 ok 58 - erase: erase matching credentials from both xdg and home files
 ok 59 - get: ignore credentials without scheme as invalid
@@ -5797,7 +5796,7 @@ ok 9 - 3-way not overwriting local changes (setup)
 ok 10 - 3-way not overwriting local changes (our side)
 ok 11 - 3-way not overwriting local changes (their side)
 ok 12 - funny symlink in work tree
-ok 13 - funny symlink in work tree, un-unlink-able
+ok 13 # skip funny symlink in work tree, un-unlink-able (missing SANITY)
 ok 14 - D/F setup
 ok 15 - D/F
 ok 16 - D/F resolve
@@ -7311,7 +7310,7 @@ ok 30 - find value with highest priority from a configset
 ok 31 - find value_list for a key from a configset
 ok 32 - proper error on non-existent files
 ok 33 - proper error on directory "files"
-ok 34 - proper error on non-accessible files
+ok 34 # skip proper error on non-accessible files (missing SANITY of POSIXPERM,SANITY)
 ok 35 - proper error on error in default config files
 ok 36 - proper error on error in custom config files
 ok 37 - check line errors for malformed values
@@ -7345,8 +7344,9 @@ ok 5 - does not allow --default without --get
 ok 1 - set up a pre-commit hook in core.hooksPath
 ok 2 - Check that various forms of specifying core.hooksPath work
 ok 3 - git rev-parse --git-path hooks
-# passed all 3 test(s)
-1..3
+ok 4 - core.hooksPath=/dev/null
+# passed all 4 test(s)
+1..4
 *** t1400-update-ref.sh ***
 ok 1 - setup
 ok 2 - create refs/heads/main
@@ -8101,10 +8101,8 @@ ok 91 - fsck error on gitattributes with excessive line lengths
 ok 92 - fsck error on gitattributes with excessive size
 ok 93 - fsck detects problems in worktree index
 ok 94 - fsck reports problems in current worktree index without filename
-ok 95 - fsck warning on symlink target with excessive length
-ok 96 - fsck warning on symlink target pointing inside git dir
-# passed all 96 test(s)
-1..96
+# passed all 94 test(s)
+1..94
 *** t1451-fsck-buffer.sh ***
 ok 1 - create valid objects
 ok 2 - reset input to empty
@@ -8769,7 +8767,7 @@ ok 21 - check splitIndex.sharedIndexExpire set to "never" and "now"
 ok 22 - same mode for index & split index
 ok 23 - split index respects core.sharedrepository 0666
 ok 24 - split index respects core.sharedrepository 0642
-ok 25 - graceful handling when splitting index is not allowed
+ok 25 # skip graceful handling when splitting index is not allowed (missing SANITY of POSIXPERM,SANITY)
 ok 26 - writing split index with null sha1 does not write cache tree
 ok 27 - do not refresh null base index
 ok 28 - reading split index at alternate location
@@ -8824,13 +8822,12 @@ ok 10 - git hook run arg u ments without -- is not allowed
 ok 11 - git hook run -- pass arguments
 ok 12 - git hook run -- out-of-repo runs excluded
 ok 13 - git -c core.hooksPath=<PATH> hook run
-ok 14 - git hook run: stdout and stderr are connected to a TTY
-ok 15 - git commit: stdout and stderr are connected to a TTY
+ok 14 # skip git hook run: stdout and stderr are connected to a TTY (missing TTY)
+ok 15 # skip git commit: stdout and stderr are connected to a TTY (missing TTY)
 ok 16 - git hook run a hook with a bad shebang
 ok 17 - stdin to hooks
-ok 18 - clone protections
-# passed all 18 test(s)
-1..18
+# passed all 17 test(s)
+1..17
 *** t2000-conflict-when-checking-files-out.sh ***
 ok 1 - git update-index --add various paths.
 ok 2 - git checkout-index without -f should fail on conflicting work tree.
@@ -9841,7 +9838,7 @@ ok 1 - initialize
 ok 2 - worktree prune on normal repo
 ok 3 - prune files inside $GIT_DIR/worktrees
 ok 4 - prune directories without gitdir
-ok 5 - prune directories with unreadable gitdir
+ok 5 # skip prune directories with unreadable gitdir (missing SANITY)
 ok 6 - prune directories with invalid gitdir
 ok 7 - prune directories with gitdir pointing to nowhere
 ok 8 - not prune locked checkout
@@ -12552,7 +12549,7 @@ ok 34 - git branch --format --omit-empty
 ok 35 - worktree colors correct
 ok 36 - set up color tests
 ok 37 - %(color) omitted without tty
-ok 38 - %(color) present with tty
+ok 38 # skip %(color) present with tty (missing TTY)
 ok 39 - --color overrides auto-color
 ok 40 - verbose output lists worktree path
 # passed all 40 test(s)
@@ -14149,7 +14146,7 @@ ok 5 - detect duplicate GIT_AUTHOR_NAME
 ok 6 - detect duplicate GIT_AUTHOR_EMAIL
 ok 7 - detect duplicate GIT_AUTHOR_DATE
 ok 8 - unknown key in author-script
-ok 9 - unwritable rebased-patches does not leak
+ok 9 # skip unwritable rebased-patches does not leak (missing SANITY of POSIXPERM,SANITY)
 # passed all 9 test(s)
 1..9
 *** t3500-cherry.sh ***
@@ -14466,7 +14463,7 @@ ok 11 - Test that "git rm bar" succeeds
 ok 12 - Post-check that bar does not exist and is not in index after "git rm -f bar"
 ok 13 - Test that "git rm -- -q" succeeds (remove a file that looks like an option)
 ok 14 - Test that "git rm -f" succeeds with embedded space, tab, or newline characters.
-ok 15 - Test that "git rm -f" fails if its rm fails
+ok 15 # skip Test that "git rm -f" fails if its rm fails (missing SANITY)
 ok 16 - When the rm in "git rm -f" fails, it should not remove the file from the index
 ok 17 - Remove nonexistent file with --ignore-unmatch
 ok 18 - "rm" command printed
@@ -14605,11 +14602,11 @@ ok 23 - git add with filemode=0, symlinks=0 prefers stage 2 over stage 1
 ok 24 - git add --refresh
 ok 25 - git add --refresh with pathspec
 ok 26 - git add --refresh correctly reports no match error
-ok 27 - git add should fail atomically upon an unreadable file
-ok 28 - git add --ignore-errors
-ok 29 - git add (add.ignore-errors)
-ok 30 - git add (add.ignore-errors = false)
-ok 31 - --no-ignore-errors overrides config
+ok 27 # skip git add should fail atomically upon an unreadable file (missing SANITY of POSIXPERM,SANITY)
+ok 28 # skip git add --ignore-errors (missing SANITY of POSIXPERM,SANITY)
+ok 29 # skip git add (add.ignore-errors) (missing SANITY of POSIXPERM,SANITY)
+ok 30 # skip git add (add.ignore-errors = false) (missing SANITY of POSIXPERM,SANITY)
+ok 31 # skip --no-ignore-errors overrides config (missing SANITY of POSIXPERM,SANITY)
 ok 32 - git add 'fo\[ou\]bar' ignores foobar
 ok 33 - git add to resolve conflicts on otherwise ignored path
 ok 34 - "add non-existent" should fail
@@ -15829,8 +15826,8 @@ ok 89 - format.signaturefile works
 ok 90 - --no-signature suppresses format.signaturefile 
 ok 91 - --signature-file overrides format.signaturefile
 ok 92 - --signature overrides format.signaturefile
-ok 93 - format-patch --stdout paginates
-ok 94 - format-patch --stdout pagination can be disabled
+ok 93 # skip format-patch --stdout paginates (missing TTY)
+ok 94 # skip format-patch --stdout pagination can be disabled (missing TTY)
 ok 95 - format-patch handles multi-line subjects
 ok 96 - format-patch handles multi-line encoded subjects
 ok 97 - format-patch wraps extremely long subject (ascii)
@@ -17199,7 +17196,7 @@ ok 9 - -U0 is valid, so is diff.context=0
 ok 1 - setup
 ok 2 - no order (=tree object order)
 ok 3 - missing orderfile
-ok 4 - unreadable orderfile
+ok 4 # skip unreadable orderfile (missing SANITY of POSIXPERM,SANITY)
 ok 5 - orderfile using option from subdir with --output
 ok 6 - orderfile using option (1)
 ok 7 - orderfile is fifo (1)
@@ -18158,10 +18155,10 @@ ok 13 - multiline subject preserved (format-patch -k | am -k)
 1..13
 *** t4153-am-resume-override-opts.sh ***
 ok 1 - setup
-ok 2 - --3way overrides --no-3way
+ok 2 # skip --3way overrides --no-3way (missing TTY)
 ok 3 - --no-quiet overrides --quiet
 ok 4 - --signoff overrides --no-signoff
-ok 5 - --reject overrides --no-reject
+ok 5 # skip --reject overrides --no-reject (missing TTY)
 # passed all 5 test(s)
 1..5
 *** t4200-rerere.sh ***
@@ -18317,7 +18314,7 @@ ok 76 - decorate-refs focus from default
 ok 77 - --clear-decorations overrides defaults
 ok 78 - --clear-decorations clears previous exclusions
 ok 79 - log.decorate config parsing
-ok 80 - log output on a TTY
+ok 80 # skip log output on a TTY (missing TTY)
 ok 81 - reflog is expected format
 ok 82 - whatchanged is expected format
 ok 83 - log.abbrevCommit configuration
@@ -19132,7 +19129,7 @@ ok 28 - Check conflicted oids and modes without messages
 ok 29 - NUL terminated conflicted file "lines"
 ok 30 - error out by default for unrelated histories
 ok 31 - can override merge of unrelated histories
-ok 32 - merge-ort fails gracefully in a read-only repository
+ok 32 # skip merge-ort fails gracefully in a read-only repository (missing SANITY)
 ok 33 - --stdin with both a successful and a conflicted merge
 ok 34 - --merge-base is incompatible with --stdin
 ok 35 - specify merge-base as parent of branch2
@@ -20095,7 +20092,7 @@ ok 60 - replace-objects invalidates commit-graph
 ok 61 - warn on improper hash version
 ok 62 - lower layers have overflow chunk
 ok 63 - git commit-graph verify
-ok 64 - detect permission problem
+ok 64 # skip detect permission problem (missing SANITY of POSIXPERM,SANITY)
 ok 65 - detect too small
 ok 66 - detect bad signature
 ok 67 - detect bad version
@@ -22682,13 +22679,13 @@ ok 7 - push -u topic_2:other2
 ok 8 - push -u :topic_2
 ok 9 - push -u --all(the same behavior with--branches)
 ok 10 - push -u HEAD
-ok 11 - progress messages go to tty
+ok 11 # skip progress messages go to tty (missing TTY)
 ok 12 - progress messages do not go to non-tty
 ok 13 - progress messages go to non-tty (forced)
-ok 14 - push -q suppresses progress
-ok 15 - push --no-progress suppresses progress
-ok 16 - quiet push
-ok 17 - quiet push -u
+ok 14 # skip push -q suppresses progress (missing TTY)
+ok 15 # skip push --no-progress suppresses progress (missing TTY)
+ok 16 # skip quiet push (missing TTY)
+ok 17 # skip quiet push -u (missing TTY)
 # passed all 17 test(s)
 1..17
 *** t5524-pull-msg.sh ***
@@ -22942,7 +22939,7 @@ ok 10 - fetch --update-shallow
 ok 11 - fetch --update-shallow into a repo with submodules
 ok 12 - fetch --update-shallow a commit that is also a shallow point into a repo with submodules
 ok 13 - fetch --update-shallow (with fetch.writeCommitGraph)
-ok 14 - shallow fetch from a read-only repo
+ok 14 # skip shallow fetch from a read-only repo (missing SANITY of POSIXPERM,SANITY)
 ok 15 - .git/shallow is edited by repack
 # passed all 15 test(s)
 # SKIP no web server found at ''
@@ -23465,10 +23462,9 @@ ok 105 - partial clone with -o
 ok 106 - partial clone: warn if server does not support object filtering
 ok 107 - batch missing blob request during checkout
 ok 108 - batch missing blob request does not inadvertently try to fetch gitlinks
-ok 109 - clone with init.templatedir runs hooks
-# passed all 109 test(s)
+# passed all 108 test(s)
 # SKIP no web server found at ''
-1..109
+1..108
 *** t5602-clone-remote-exec.sh ***
 ok 1 - setup
 ok 2 - clone calls git upload-pack unqualified with no -u option
@@ -24439,21 +24435,21 @@ ok 24 - %Cred enables colors for color.diff
 ok 25 - %Cred enables colors for color.ui
 ok 26 - %Cred respects --color
 ok 27 - %Cred respects --no-color
-ok 28 - %Cred respects --color=auto (stdout is tty)
+ok 28 # skip %Cred respects --color=auto (stdout is tty) (missing TTY)
 ok 29 - %Cred respects --color=auto (stdout not tty)
 ok 30 - %C(...) does not enable color by default
 ok 31 - %C(...) enables colors for color.diff
 ok 32 - %C(...) enables colors for color.ui
 ok 33 - %C(...) respects --color
 ok 34 - %C(...) respects --no-color
-ok 35 - %C(...) respects --color=auto (stdout is tty)
+ok 35 # skip %C(...) respects --color=auto (stdout is tty) (missing TTY)
 ok 36 - %C(...) respects --color=auto (stdout not tty)
 ok 37 - %C(auto,...) does not enable color by default
 ok 38 - %C(auto,...) enables colors for color.diff
 ok 39 - %C(auto,...) enables colors for color.ui
 ok 40 - %C(auto,...) respects --color
 ok 41 - %C(auto,...) respects --no-color
-ok 42 - %C(auto,...) respects --color=auto (stdout is tty)
+ok 42 # skip %C(auto,...) respects --color=auto (stdout is tty) (missing TTY)
 ok 43 - %C(auto,...) respects --color=auto (stdout not tty)
 ok 44 - %C(always,...) enables color even without tty
 ok 45 - %C(auto) respects --color
@@ -24823,7 +24819,7 @@ ok 19 - filtered bundle: blob:limit=100
 ok 20 - cloning from filtered bundle has useful error
 ok 21 - verify catches unreachable, broken prerequisites
 ok 22 - bundle progress includes write phase
-ok 23 - create --quiet disables all bundle progress
+ok 23 # skip create --quiet disables all bundle progress (missing TTY)
 ok 24 - bundle progress with --no-quiet
 ok 25 - read bundle over stdin
 ok 26 - send a bundle to standard output
@@ -25881,7 +25877,7 @@ ok 242 - Check that :track[short] cannot be used with other atoms
 ok 243 - Check that :track[short] works when upstream is invalid
 ok 244 - Check for invalid refname format
 ok 245 - set up color tests
-ok 246 - %(color) shows color with a tty
+ok 246 # skip %(color) shows color with a tty (missing TTY)
 ok 247 - %(color) does not show color without tty
 ok 248 - --color can override tty check
 ok 249 - color.ui=always does not override tty check
@@ -26865,7 +26861,7 @@ ok 7 - gc --keep-largest-pack
 ok 8 - pre-auto-gc hook can stop auto gc
 ok 9 - auto gc with too many loose objects does not attempt to create bitmaps
 ok 10 - gc --no-quiet
-ok 11 - with TTY: gc --no-quiet
+ok 11 # skip with TTY: gc --no-quiet (missing TTY)
 ok 12 - gc --quiet
 ok 13 - gc.reflogExpire{Unreachable,}=never skips "expire" via "gc"
 ok 14 - one of gc.reflogExpire{Unreachable,}=never does not skip "expire" via "gc"
@@ -27323,7 +27319,7 @@ ok 204 - --format --omit-empty works
 ok 205 - git tag -l with --format="%(rest)" must fail
 ok 206 - set up color tests
 ok 207 - %(color) omitted without tty
-ok 208 - %(color) present with tty
+ok 208 # skip %(color) present with tty (missing TTY)
 ok 209 - --color overrides auto-color
 ok 210 - color.ui=always overrides auto-color
 ok 211 - setup --merged test tags
@@ -27361,115 +27357,114 @@ ok 16 - core.editor with a space
 *** t7006-pager.sh ***
 ok 1 - determine default pager
 ok 2 - setup
-ok 3 - some commands use a pager
-not ok 4 - pager runs from subdir # TODO known breakage
-ok 5 - LESS and LV envvars are set for pagination
-ok 6 - LESS and LV envvars set by git-sh-setup
-ok 7 - some commands do not use a pager
+ok 3 # skip some commands use a pager (missing TTY)
+ok 4 # skip pager runs from subdir (missing TTY)
+ok 5 # skip LESS and LV envvars are set for pagination (missing TTY)
+ok 6 # skip LESS and LV envvars set by git-sh-setup (missing TTY of !MINGW,TTY)
+ok 7 # skip some commands do not use a pager (missing TTY)
 ok 8 - no pager when stdout is a pipe
 ok 9 - no pager when stdout is a regular file
-ok 10 - git --paginate rev-list uses a pager
+ok 10 # skip git --paginate rev-list uses a pager (missing TTY)
 ok 11 - no pager even with --paginate when stdout is a pipe
-ok 12 - no pager with --no-pager
-ok 13 - configuration can disable pager
-ok 14 - configuration can enable pager (from subdir)
-ok 15 - git tag -l defaults to paging
-ok 16 - git tag -l respects pager.tag
-ok 17 - git tag -l respects --no-pager
-ok 18 - git tag with no args defaults to paging
-ok 19 - git tag with no args respects pager.tag
-ok 20 - git tag --contains defaults to paging
-ok 21 - git tag --contains respects pager.tag
-ok 22 - git tag -a defaults to not paging
-ok 23 - git tag -a ignores pager.tag
-ok 24 - git tag -a respects --paginate
-ok 25 - git tag as alias ignores pager.tag with -a
-ok 26 - git tag as alias respects pager.tag with -l
-ok 27 - git branch defaults to paging
-ok 28 - git branch respects pager.branch
-ok 29 - git branch respects --no-pager
-ok 30 - git branch --edit-description ignores pager.branch
-ok 31 - git branch --set-upstream-to ignores pager.branch
-ok 32 - git config ignores pager.config when setting
-ok 33 - git config --edit ignores pager.config
-ok 34 - git config --get ignores pager.config
-ok 35 - git config --get-urlmatch defaults to paging
-ok 36 - git config --get-all respects pager.config
-ok 37 - git config --list defaults to paging
+ok 12 # skip no pager with --no-pager (missing TTY)
+ok 13 # skip configuration can disable pager (missing TTY)
+ok 14 # skip configuration can enable pager (from subdir) (missing TTY)
+ok 15 # skip git tag -l defaults to paging (missing TTY)
+ok 16 # skip git tag -l respects pager.tag (missing TTY)
+ok 17 # skip git tag -l respects --no-pager (missing TTY)
+ok 18 # skip git tag with no args defaults to paging (missing TTY)
+ok 19 # skip git tag with no args respects pager.tag (missing TTY)
+ok 20 # skip git tag --contains defaults to paging (missing TTY)
+ok 21 # skip git tag --contains respects pager.tag (missing TTY)
+ok 22 # skip git tag -a defaults to not paging (missing TTY)
+ok 23 # skip git tag -a ignores pager.tag (missing TTY)
+ok 24 # skip git tag -a respects --paginate (missing TTY)
+ok 25 # skip git tag as alias ignores pager.tag with -a (missing TTY)
+ok 26 # skip git tag as alias respects pager.tag with -l (missing TTY)
+ok 27 # skip git branch defaults to paging (missing TTY)
+ok 28 # skip git branch respects pager.branch (missing TTY)
+ok 29 # skip git branch respects --no-pager (missing TTY)
+ok 30 # skip git branch --edit-description ignores pager.branch (missing TTY)
+ok 31 # skip git branch --set-upstream-to ignores pager.branch (missing TTY)
+ok 32 # skip git config ignores pager.config when setting (missing TTY)
+ok 33 # skip git config --edit ignores pager.config (missing TTY)
+ok 34 # skip git config --get ignores pager.config (missing TTY)
+ok 35 # skip git config --get-urlmatch defaults to paging (missing TTY)
+ok 36 # skip git config --get-all respects pager.config (missing TTY)
+ok 37 # skip git config --list defaults to paging (missing TTY)
 ok 38 - tests can detect color
 ok 39 - no color when stdout is a regular file
-ok 40 - color when writing to a pager
-ok 41 - colors are suppressed by color.pager
+ok 40 # skip color when writing to a pager (missing TTY)
+ok 41 # skip colors are suppressed by color.pager (missing TTY)
 ok 42 - color when writing to a file intended for a pager
-ok 43 - colors are sent to pager for external commands
+ok 43 # skip colors are sent to pager for external commands (missing TTY)
 ok 44 - setup: some aliases
-ok 45 - git log - default pager is used by default
-ok 46 - git log - PAGER overrides default pager
-ok 47 - git log - repository-local core.pager setting overrides PAGER
-ok 48 - git log - core.pager overrides PAGER from subdirectory
-ok 49 - git log - GIT_PAGER overrides core.pager
-ok 50 - git -p log - default pager is used by default
-ok 51 - git -p log - PAGER overrides default pager
-ok 52 - git -p log - repository-local core.pager setting overrides PAGER
-ok 53 - git -p log - core.pager overrides PAGER from subdirectory
-ok 54 - git -p log - GIT_PAGER overrides core.pager
-ok 55 - git aliasedlog - default pager is used by default
-ok 56 - git aliasedlog - PAGER overrides default pager
-ok 57 - git aliasedlog - repository-local core.pager setting overrides PAGER
-ok 58 - git aliasedlog - core.pager overrides PAGER from subdirectory
-ok 59 - git aliasedlog - GIT_PAGER overrides core.pager
-ok 60 - git -p aliasedlog - default pager is used by default
-ok 61 - git -p aliasedlog - PAGER overrides default pager
-ok 62 - git -p aliasedlog - repository-local core.pager setting overrides PAGER
-ok 63 - git -p aliasedlog - core.pager overrides PAGER from subdirectory
-ok 64 - git -p aliasedlog - GIT_PAGER overrides core.pager
-ok 65 - git -p true - default pager is used by default
-ok 66 - git -p true - PAGER overrides default pager
-ok 67 - git -p true - repository-local core.pager setting overrides PAGER
-ok 68 - git -p true - core.pager overrides PAGER from subdirectory
-ok 69 - git -p true - GIT_PAGER overrides core.pager
-ok 70 - git -p request-pull - default pager is used by default
-ok 71 - git -p request-pull - PAGER overrides default pager
-ok 72 - git -p request-pull - repository-local core.pager setting overrides PAGER
-ok 73 - git -p request-pull - core.pager overrides PAGER from subdirectory
-ok 74 - git -p request-pull - GIT_PAGER overrides core.pager
-ok 75 - git -p - default pager is used by default
-ok 76 - git -p - PAGER overrides default pager
-not ok 77 - git -p - repository-local core.pager setting is not used # TODO known breakage
-ok 78 - git -p - GIT_PAGER overrides core.pager
-ok 79 - core.pager in repo config works and retains cwd
-ok 80 - core.pager is found via alias in subdirectory
-not ok 81 - no pager for 'git -p nonsense' # TODO known breakage
-ok 82 - git shortlog - default pager is used by default
-ok 83 - git shortlog - PAGER overrides default pager
-ok 84 - git shortlog - repository-local core.pager setting overrides PAGER
-ok 85 - git shortlog - core.pager overrides PAGER from subdirectory
-ok 86 - git shortlog - GIT_PAGER overrides core.pager
+ok 45 # skip git log - default pager is used by default (missing TTY of SIMPLEPAGER,TTY)
+ok 46 # skip git log - PAGER overrides default pager (missing TTY)
+ok 47 # skip git log - repository-local core.pager setting overrides PAGER (missing TTY)
+ok 48 # skip git log - core.pager overrides PAGER from subdirectory (missing TTY)
+ok 49 # skip git log - GIT_PAGER overrides core.pager (missing TTY)
+ok 50 # skip git -p log - default pager is used by default (missing TTY of SIMPLEPAGER,TTY)
+ok 51 # skip git -p log - PAGER overrides default pager (missing TTY)
+ok 52 # skip git -p log - repository-local core.pager setting overrides PAGER (missing TTY)
+ok 53 # skip git -p log - core.pager overrides PAGER from subdirectory (missing TTY)
+ok 54 # skip git -p log - GIT_PAGER overrides core.pager (missing TTY)
+ok 55 # skip git aliasedlog - default pager is used by default (missing TTY of SIMPLEPAGER,TTY)
+ok 56 # skip git aliasedlog - PAGER overrides default pager (missing TTY)
+ok 57 # skip git aliasedlog - repository-local core.pager setting overrides PAGER (missing TTY)
+ok 58 # skip git aliasedlog - core.pager overrides PAGER from subdirectory (missing TTY)
+ok 59 # skip git aliasedlog - GIT_PAGER overrides core.pager (missing TTY)
+ok 60 # skip git -p aliasedlog - default pager is used by default (missing TTY of SIMPLEPAGER,TTY)
+ok 61 # skip git -p aliasedlog - PAGER overrides default pager (missing TTY)
+ok 62 # skip git -p aliasedlog - repository-local core.pager setting overrides PAGER (missing TTY)
+ok 63 # skip git -p aliasedlog - core.pager overrides PAGER from subdirectory (missing TTY)
+ok 64 # skip git -p aliasedlog - GIT_PAGER overrides core.pager (missing TTY)
+ok 65 # skip git -p true - default pager is used by default (missing TTY of SIMPLEPAGER,TTY)
+ok 66 # skip git -p true - PAGER overrides default pager (missing TTY)
+ok 67 # skip git -p true - repository-local core.pager setting overrides PAGER (missing TTY)
+ok 68 # skip git -p true - core.pager overrides PAGER from subdirectory (missing TTY)
+ok 69 # skip git -p true - GIT_PAGER overrides core.pager (missing TTY)
+ok 70 # skip git -p request-pull - default pager is used by default (missing TTY of SIMPLEPAGER,TTY)
+ok 71 # skip git -p request-pull - PAGER overrides default pager (missing TTY)
+ok 72 # skip git -p request-pull - repository-local core.pager setting overrides PAGER (missing TTY)
+ok 73 # skip git -p request-pull - core.pager overrides PAGER from subdirectory (missing TTY)
+ok 74 # skip git -p request-pull - GIT_PAGER overrides core.pager (missing TTY)
+ok 75 # skip git -p - default pager is used by default (missing TTY of SIMPLEPAGER,TTY)
+ok 76 # skip git -p - PAGER overrides default pager (missing TTY)
+ok 77 # skip git -p - repository-local core.pager setting is not used (missing TTY)
+ok 78 # skip git -p - GIT_PAGER overrides core.pager (missing TTY)
+ok 79 # skip core.pager in repo config works and retains cwd (missing TTY)
+ok 80 # skip core.pager is found via alias in subdirectory (missing TTY)
+ok 81 # skip no pager for 'git -p nonsense' (missing TTY)
+ok 82 # skip git shortlog - default pager is used by default (missing TTY of SIMPLEPAGER,TTY)
+ok 83 # skip git shortlog - PAGER overrides default pager (missing TTY)
+ok 84 # skip git shortlog - repository-local core.pager setting overrides PAGER (missing TTY)
+ok 85 # skip git shortlog - core.pager overrides PAGER from subdirectory (missing TTY)
+ok 86 # skip git shortlog - GIT_PAGER overrides core.pager (missing TTY)
 ok 87 - setup: configure shortlog not to paginate
-ok 88 - no pager for 'git shortlog'
-ok 89 - git shortlog - core.pager is not used from subdirectory
-ok 90 - git -p shortlog - default pager is used by default
-ok 91 - git -p shortlog - core.pager overrides PAGER from subdirectory
-ok 92 - git -p apply </dev/null - core.pager overrides PAGER from subdirectory
-ok 93 - command-specific pager
-ok 94 - command-specific pager overrides core.pager
-ok 95 - command-specific pager overridden by environment
+ok 88 # skip no pager for 'git shortlog' (missing TTY)
+ok 89 # skip git shortlog - core.pager is not used from subdirectory (missing TTY)
+ok 90 # skip git -p shortlog - default pager is used by default (missing TTY of SIMPLEPAGER,TTY)
+ok 91 # skip git -p shortlog - core.pager overrides PAGER from subdirectory (missing TTY)
+ok 92 # skip git -p apply </dev/null - core.pager overrides PAGER from subdirectory (missing TTY)
+ok 93 # skip command-specific pager (missing TTY)
+ok 94 # skip command-specific pager overrides core.pager (missing TTY)
+ok 95 # skip command-specific pager overridden by environment (missing TTY)
 ok 96 - setup external command
-ok 97 - command-specific pager works for external commands
-ok 98 - sub-commands of externals use their own pager
-ok 99 - external command pagers override sub-commands
+ok 97 # skip command-specific pager works for external commands (missing TTY)
+ok 98 # skip sub-commands of externals use their own pager (missing TTY)
+ok 99 # skip external command pagers override sub-commands (missing TTY)
 ok 100 - command with underscores does not complain
-ok 101 - git tag with auto-columns 
+ok 101 # skip git tag with auto-columns  (missing TTY)
 ok 102 - setup trace2
 ok 103 - setup large log output
-ok 104 - git returns SIGPIPE on early pager exit
-ok 105 - git returns SIGPIPE on early pager non-zero exit
-ok 106 - git discards pager non-zero exit without SIGPIPE
-ok 107 - git skips paging nonexisting command
-ok 108 - git returns SIGPIPE on propagated signals from pager
-ok 109 - non-existent pager doesnt cause crash
-# still have 3 known breakage(s)
-# passed all remaining 106 test(s)
+ok 104 # skip git returns SIGPIPE on early pager exit (missing TTY)
+ok 105 # skip git returns SIGPIPE on early pager non-zero exit (missing TTY)
+ok 106 # skip git discards pager non-zero exit without SIGPIPE (missing TTY)
+ok 107 # skip git skips paging nonexisting command (missing TTY)
+ok 108 # skip git returns SIGPIPE on propagated signals from pager (missing TTY)
+ok 109 # skip non-existent pager doesnt cause crash (missing TTY)
+# passed all 109 test(s)
 1..109
 *** t7007-show.sh ***
 ok 1 - setup
@@ -28085,11 +28080,11 @@ ok 25 - clean.requireForce and -n
 ok 26 - clean.requireForce and -f
 ok 27 - clean.requireForce and --interactive
 ok 28 - core.excludesfile
-ok 29 - removal failure
+ok 29 # skip removal failure (missing SANITY)
 ok 30 - nested git work tree
 ok 31 - should clean things that almost look like git but are not
 ok 32 - should not clean submodules
-ok 33 - should avoid cleaning possible submodules
+ok 33 # skip should avoid cleaning possible submodules (missing SANITY of POSIXPERM,SANITY)
 ok 34 - nested (empty) git should be kept
 ok 35 - nested bare repositories should be cleaned
 not ok 36 - nested (empty) bare repositories should be cleaned even when in .git # TODO known breakage
@@ -28099,7 +28094,7 @@ ok 39 - giving path to nested .git will not remove it
 ok 40 - giving path to nested .git/ will NOT remove contents
 ok 41 - force removal of nested git work tree
 ok 42 - git clean -e
-ok 43 - git clean -d with an unreadable empty directory
+ok 43 # skip git clean -d with an unreadable empty directory (missing SANITY)
 ok 44 - git clean -d respects pathspecs (dir is prefix of pathspec)
 ok 45 - git clean -d respects pathspecs (pathspec is prefix of dir)
 ok 46 - git clean -d skips untracked dirs containing ignored files
@@ -28138,7 +28133,7 @@ ok 19 - git clean -id (ask - Ctrl+D)
 ok 20 - git clean -id with prefix and path (filter)
 ok 21 - git clean -id with prefix and path (select by name)
 ok 22 - git clean -id with prefix and path (ask)
-ok 23 - git clean -i paints the header in HEADER color
+ok 23 # skip git clean -i paints the header in HEADER color (missing TTY)
 # passed all 23 test(s)
 1..23
 *** t7400-submodule-basic.sh ***
@@ -28840,8 +28835,8 @@ ok 48 - cleanup commit message (whitespace config, -m)
 ok 49 - message shows author when it is not equal to committer
 ok 50 - message shows date when it is explicitly set
 ok 51 - message does not have multiple scissors lines
-ok 52 - message shows committer when it is automatic
-ok 53 # skip do not fire editor when committer is bogus (missing !AUTOIDENT of !FAIL_PREREQS,!AUTOIDENT)
+ok 52 # skip message shows committer when it is automatic (missing AUTOIDENT)
+ok 53 - do not fire editor when committer is bogus
 ok 54 - do not fire editor if -m <msg> was given
 ok 55 - do not fire editor if -m "" was given
 ok 56 - do not fire editor in the presence of conflicts
@@ -29091,13 +29086,13 @@ ok 39 - status with relative paths
 ok 40 - status -s with relative paths
 ok 41 - status --porcelain ignores relative paths setting
 ok 42 - setup unique colors
-ok 43 - status with color.ui
-ok 44 - status with color.status
-ok 45 - status -s with color.ui
-ok 46 - status -s with color.status
-ok 47 - status -s -b with color.status
-ok 48 - status --porcelain ignores color.ui
-ok 49 - status --porcelain ignores color.status
+ok 43 # skip status with color.ui (missing TTY)
+ok 44 # skip status with color.status (missing TTY)
+ok 45 # skip status -s with color.ui (missing TTY)
+ok 46 # skip status -s with color.status (missing TTY)
+ok 47 # skip status -s -b with color.status (missing TTY)
+ok 48 # skip status --porcelain ignores color.ui (missing TTY)
+ok 49 # skip status --porcelain ignores color.status (missing TTY)
 ok 50 - status --porcelain respects -b
 ok 51 - status without relative paths
 ok 52 - status -s without relative paths
@@ -29118,7 +29113,7 @@ ok 66 - status submodule summary (clean submodule): commit
 ok 67 - status -s submodule summary (clean submodule)
 ok 68 - status -z implies porcelain
 ok 69 - commit --dry-run submodule summary (--amend)
-ok 70 - status succeeds in a read-only repository
+ok 70 # skip status succeeds in a read-only repository (missing SANITY of POSIXPERM,SANITY)
 ok 71 - --ignore-submodules=untracked suppresses submodules with untracked content
 ok 72 - .gitmodules ignore=untracked suppresses submodules with untracked content
 ok 73 - .git/config ignore=untracked suppresses submodules with untracked content
@@ -29339,7 +29334,7 @@ ok 38 - in-place editing with basic patch
 ok 39 - in-place editing with additional trailer
 ok 40 - in-place editing on stdin disallowed
 ok 41 - in-place editing on non-existing file
-ok 42 - in-place editing doesn't clobber original file on error
+ok 42 # skip in-place editing doesn't clobber original file on error (missing SANITY of POSIXPERM,SANITY)
 ok 43 - using "where = before"
 ok 44 - overriding configuration with "--where after"
 ok 45 - using "--where after" with "--no-where"
@@ -29903,7 +29898,7 @@ ok 33 - --write-midx with preferred bitmap tips
 ok 34 - --write-midx -b packs non-kept objects
 ok 35 - --write-midx removes stale pack-based bitmaps
 ok 36 - --write-midx with --pack-kept-objects
-ok 37 - --quiet disables progress
+ok 37 # skip --quiet disables progress (missing TTY)
 ok 38 - clean up .tmp-* packs on error
 ok 39 - repack -ad cleans up old .tmp-* packs
 ok 40 - setup for update-server-info
@@ -31201,8 +31196,8 @@ ok 24 - long non-ascii self name is suppressed
 ok 25 - sanitized self name is suppressed
 ok 26 - Show all headers
 ok 27 - Prompting works
-ok 28 - implicit ident is allowed
-ok 29 # skip broken implicit ident aborts send-email (missing !AUTOIDENT of PERL,!AUTOIDENT)
+ok 28 # skip implicit ident is allowed (missing AUTOIDENT of PERL,AUTOIDENT)
+ok 29 - broken implicit ident aborts send-email
 ok 30 - setup cmd scripts
 ok 31 - tocmd works
 ok 32 - cccmd works
@@ -32108,7 +32103,7 @@ ok 6 - initializes sparse-checkout by default
 ok 7 - --full-clone does not create sparse-checkout
 ok 8 - --single-branch clones HEAD only
 ok 9 - --no-single-branch clones all branches
-ok 10 - progress with tty
+ok 10 # skip progress with tty (missing TTY)
 ok 11 - progress without tty
 ok 12 - scalar clone warns when background maintenance fails
 ok 13 - `scalar clone --no-src`
@@ -33208,10 +33203,10 @@ ok 67 - prompt - conflict indicator
 # passed all 67 test(s)
 1..67
 
-missing prereq: !AUTOIDENT !LONG_IS_64BIT !PCRE !PTHREADS BUILTIN_TXT_CHECKOUT__WORKER BUILTIN_TXT_MERGE_OURS BUILTIN_TXT_MERGE_RECURSIVE BUILTIN_TXT_MERGE_RECURSIVE_OURS BUILTIN_TXT_MERGE_RECURSIVE_THEIRS BUILTIN_TXT_MERGE_SUBTREE BUILTIN_TXT_PICKAXE BUILTIN_TXT_SUBMODULE__HELPER BUILTIN_TXT_UPLOAD_ARCHIVE__WRITER CASE_INSENSITIVE_FS EXPENSIVE FSMONITOR_DAEMON GETCWD_IGNORES_PERMS GPG GPG2 GPGSM HIGHLIGHT JGIT LONG_REF MINGW NATIVE_CRLF RFC1991 RUNTIME_PREFIX SETFACL SYMLINKS_WINDOWS TAR_NEEDS_PAX_FALLBACK UTF8_NFD_TO_NFC WINDOWS
+missing prereq: !LONG_IS_64BIT !PCRE !PTHREADS ADD_OUT AUTOIDENT BUILTIN_TXT_CHECKOUT__WORKER BUILTIN_TXT_MERGE_OURS BUILTIN_TXT_MERGE_RECURSIVE BUILTIN_TXT_MERGE_RECURSIVE_OURS BUILTIN_TXT_MERGE_RECURSIVE_THEIRS BUILTIN_TXT_MERGE_SUBTREE BUILTIN_TXT_PICKAXE BUILTIN_TXT_SUBMODULE__HELPER BUILTIN_TXT_UPLOAD_ARCHIVE__WRITER CASE_INSENSITIVE_FS COMMIT_OUT EXPENSIVE FSMONITOR_DAEMON GPG GPG2 GPGSM HIGHLIGHT JGIT LONG_REF MINGW NATIVE_CRLF RFC1991 RUNTIME_PREFIX SANITY SETFACL SYMLINKS_WINDOWS TAR_NEEDS_PAX_FALLBACK TTY UPDATE_INDEX_OUT UTF8_NFD_TO_NFC WINDOWS WRITE_TREE_OUT
 
 fixed   1
-success 29439
+success 29275
 failed  0
-broken  272
-total   30158
+broken  269
+total   30154
