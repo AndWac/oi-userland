@@ -95,6 +95,10 @@ COMPONENT_INSTALL_ARGS += INSTALLVENDORLIB=$(shell $(PERL) -MConfig -e 'print "$
 
 COMPONENT_TEST_ENV += LC_ALL=C.UTF-8
 
+# Create predictable test environment - see git(1)
+COMPONENT_TEST_ENV += GIT_CONFIG_GLOBAL=/dev/null
+COMPONENT_TEST_ENV += GIT_CONFIG_NOSYSTEM=true
+
 # many failures; keep going; later versions of git are much cleaner
 COMPONENT_TEST_ARGS += -k -i
 # Run tests in parallel by default
