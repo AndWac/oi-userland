@@ -166,6 +166,10 @@ TEST_REQUIRED_PACKAGES.perl += library/perl-5/cgi
 TEST_REQUIRED_PACKAGES.perl += library/perl-5/dbi
 TEST_REQUIRED_PACKAGES.perl += library/perl-5/dbd-sqlite
 TEST_REQUIRED_PACKAGES.perl += library/perl-5/html-parser
+# The check for the TTY prereq needs IO::Pty.
+# See t/lib-terminal.sh and t/test-terminal.perl.
+# The IO::Pty module is in the io-tty package.
+TEST_REQUIRED_PACKAGES.perl += library/perl-5/io-tty
 
 # Needed to generate git-subtree documentation
 REQUIRED_PACKAGES += text/asciidoc
